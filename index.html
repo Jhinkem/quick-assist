@@ -13,10 +13,19 @@
 
     <div class="container">
         <header>
-            <h1>QuickAssist</h1>
-            <input type="text" id="search-bar" placeholder="Search responses... (e.g., 'Wifi')">
+    <div class="header-top">
+        <h1>QuickAssist</h1>
+        <div class="controls">
+            <button onclick="exportData()" class="secondary-btn" style="border: 1px solid #ccc;">⬇ Backup</button>
+            <button onclick="document.getElementById('file-input').click()" class="secondary-btn" style="border: 1px solid #ccc;">⬆ Restore</button>
+            
+            <input type="file" id="file-input" style="display: none" onchange="importData(this)">
+            
             <button id="add-btn" class="primary-btn">+ New Reply</button>
-        </header>
+        </div>
+    </div>
+    <input type="text" id="search-bar" placeholder="Search responses... (e.g., 'Wifi')">
+</header>
 
         <div id="card-grid" class="grid">
             </div>

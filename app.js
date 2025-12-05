@@ -138,3 +138,62 @@ searchInput.addEventListener('input', (e) => {
 
 // Initial Render
 renderCards();
+
+// --- BACKUP SYSTEM ---
+
+// 1. Export (Download your personal JSON file)
+function exportData() {
+    const dataStr = JSON.stringify(responses, null, 2);
+    const blob = new Blob([dataStr], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    
+    // Create a fake link to trigger download
+    const a = document.createElement('a');
+    a.href = url;
+    // Naming the file with today's date
+    const date = new Date().toISOString().slice(0, 10);
+    a.download = `QuickAssist_Backup_${date}.json`; 
+    a.click();
+    
+    URL.revokeObjectURL(url);
+}
+
+// 2. Import (Restore from file)
+function importData(inputElement) {
+    const file = inputElement.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    
+    reader.onload = function(e) {
+        try {
+            const importedData = JSON.parse(e.target.result);
+            
+            if (!Array.isArray(importedData)) {
+                alert("This file doesn't look right. Are you sure it's a QuickAssist backup?");
+                return;
+            }
+
+            // Safety Check: Ask before overwriting
+            if (confirm("Restore this backup? \n\n'OK' will Merge (add missing ones).\n'Cancel' will Replace (wipe current and load file).")) {
+                // MERGE MODE (Safe)
+                const existingIds = new Set(responses.map(r => r.id));
+                const newItems = importedData.filter(item => !existingIds.has(item.id));
+                responses = [...responses, ...newItems];
+                alert(`Backup Restored! Added ${newItems.length} missing responses.`);
+            } else {
+                // REPLACE MODE (Total Reset)
+                responses = importedData;
+                alert("Backup Restored! Your list has been replaced.");
+            }
+
+            saveAndRender(); // Update the screen immediately
+            
+        } catch (err) {
+            alert("Error reading file: " + err);
+        }
+    };
+
+    reader.readAsText(file);
+    inputElement.value = ''; // Reset so you can load same file again if needed
+}

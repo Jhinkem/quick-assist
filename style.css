@@ -22,9 +22,22 @@ body {
 /* Header Styling */
 header {
     display: flex;
+    flex-direction: column;
     gap: 15px;
-    align-items: center;
     margin-bottom: 30px;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Keeps it looking good on small screens */
+    gap: 10px;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
 }
 
 input#search-bar {
@@ -141,4 +154,9 @@ input#search-bar {
     border: 1px solid #d1d5db;
     border-radius: 6px;
     box-sizing: border-box; /* Fixes padding width issues */
+}
+
+#search-bar {
+    width: 100%; /* Ensures search bar takes full width below buttons */
+    box-sizing: border-box;
 }
