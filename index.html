@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickAssist</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>QuickAssist</h1>
+            <input type="text" id="search-bar" placeholder="Search responses... (e.g., 'Wifi')">
+            <button id="add-btn" class="primary-btn">+ New Reply</button>
+        </header>
+
+        <div id="card-grid" class="grid">
+            </div>
+    </div>
+
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <h2 id="modal-title">New Response</h2>
+            <input type="hidden" id="edit-id"> <label>Title</label>
+            <input type="text" id="response-title" placeholder="e.g. Password Reset">
+            
+            <label>Response Text</label>
+            <textarea id="response-text" rows="6" placeholder="Type the text to be copied..."></textarea>
+            
+            <div class="modal-actions">
+                <button id="cancel-btn" class="secondary-btn">Cancel</button>
+                <button id="save-btn" class="primary-btn">Save Response</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

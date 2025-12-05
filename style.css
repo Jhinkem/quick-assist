@@ -1,0 +1,144 @@
+:root {
+    --bg-color: #f3f4f6;
+    --card-bg: #ffffff;
+    --primary: #2563eb; /* IT Blue */
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Header Styling */
+header {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+input#search-bar {
+    flex-grow: 1;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+/* Buttons */
+.primary-btn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.primary-btn:hover { background-color: #1d4ed8; }
+
+.secondary-btn {
+    background-color: #e5e7eb;
+    color: var(--text-dark);
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* The Grid Layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* Card Styling */
+.card {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid transparent;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-color: var(--primary);
+}
+
+/* Feedback Animation for Copy */
+.card.copied {
+    background-color: #d1fae5; /* Light Green */
+    border-color: #10b981;
+}
+
+.card h3 { margin-top: 0; color: var(--primary); }
+.card p { color: var(--text-light); font-size: 0.9em; }
+
+/* Edit/Delete Actions (Top Right of Card) */
+.card-actions {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: none; /* Hidden until hover */
+}
+
+.card:hover .card-actions { display: block; }
+
+.action-icon {
+    background: #e5e7eb;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.action-icon:hover { background: #d1d5db; }
+.delete-icon:hover { background: #fee2e2; color: #dc2626; }
+
+/* Modal Styling */
+.modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.hidden { display: none; }
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 500px;
+    max-width: 90%;
+}
+
+.modal-content input, .modal-content textarea {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    box-sizing: border-box; /* Fixes padding width issues */
+}
